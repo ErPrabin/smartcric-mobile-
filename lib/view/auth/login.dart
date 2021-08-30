@@ -132,6 +132,15 @@ class _LogInState extends State<LogIn> {
                                     userp.login(email, password);
                                   }
                                 }),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            InkWell(
+                              child: Text('Forget Password?'),
+                              onTap: () {
+                                print('forget password');
+                              },
+                            )
                           ],
                         ),
                       ),
