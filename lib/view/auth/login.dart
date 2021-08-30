@@ -139,6 +139,8 @@ class _LogInState extends State<LogIn> {
                               child: Text('Forget Password?'),
                               onTap: () {
                                 print('forget password');
+                                Navigator.of(context)
+                                    .pushNamed('/forgetpassword');
                               },
                             )
                           ],
