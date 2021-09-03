@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-const kprimarycolor = Color(0xfffa4747);
-const ktextcolor = Color(0xff505050);
+const kprimarycolor = Color(0xff93d676);
+const kwhitetext = Colors.white;
+const kdarktext = Colors.black;
 const ktextlightcolor = Colors.grey;
 
 const ktextstyle = TextStyle(fontSize: 16, fontWeight: FontWeight.bold);

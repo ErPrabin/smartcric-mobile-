@@ -4,6 +4,7 @@ import 'package:smartcric/model/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 import 'package:smartcric/model/loginerror.dart';
+import 'package:smartcric/util.dart';
 
 class AuthController extends ChangeNotifier {
   static var client = http.Client();
@@ -23,11 +24,10 @@ class AuthController extends ChangeNotifier {
   // }
 
   login(String email, String password) async {
-    print('apicall');
+    print(BaseUrl().url);
     // String email=email;
     // String password=password;
-    var response = await client.post(
-        Uri.parse('http://192.168.100.146:8080/api/login'),
+    var response = await client.post(Uri.parse(BaseUrl().url + 'login'),
         body: {'email': email, 'password': password},
         headers: {'key': 'application/json'});
     if (response.statusCode == 200) {
