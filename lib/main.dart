@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           routes: {
             '/': (context) => Wrapper(),
             '/forgetpassword': (context) => ForgetPassword(),
-            '/homework': (context) => HomeWork(),
+            '/homework': (context) => HomeWorkPage(),
             // '/food_detail': (context) => FoodDetail(),
             // '/cartpage': (context) => CartPage(),
             
