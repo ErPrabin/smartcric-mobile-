@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 import 'package:smartcric/view/forgetpassword/forgetpassword.dart';
+import 'package:smartcric/view/homework/index.dart';
 import 'package:smartcric/wrapper.dart';
 
 void main() {
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
           routes: {
             '/': (context) => Wrapper(),
             '/forgetpassword': (context) => ForgetPassword(),
+            '/homework': (context) => HomeWork(),
             // '/food_detail': (context) => FoodDetail(),
             // '/cartpage': (context) => CartPage(),
             

@@ -18,9 +18,7 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         title: Text('SmartCric',
             style: TextStyle(
-                fontWeight: FontWeight.w900,
-                fontSize: 24,
-                color: kwhitetext)),
+                fontWeight: FontWeight.w900, fontSize: 24, color: kwhitetext)),
         leading: IconButton(
           iconSize: 18,
           icon: Container(
@@ -50,10 +48,15 @@ class HomePage extends StatelessWidget {
                   return InkWell(
                     child: Container(
                       color: Colors.white,
-                      child: Center(child: Text(toolkit[index],style: ktextstyle,)),
+                      child: Center(
+                          child: Text(
+                        toolkit[index],
+                        style: ktextstyle,
+                      )),
                     ),
                     onTap: () {
-                      print('clicked');
+                      Navigator.of(context)
+                          .pushNamed('/' + toolkit[index].toLowerCase());
                     },
                   );
                 }),
