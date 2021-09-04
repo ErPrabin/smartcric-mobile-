@@ -29,6 +29,7 @@ class HomeWorkContainer extends StatelessWidget {
                   child: Icon(Icons.download),
                   onTap: () {
                     print('download');
+                    HomeworkController.downloadHomework(data.id);
                   },
                 ),
               ],

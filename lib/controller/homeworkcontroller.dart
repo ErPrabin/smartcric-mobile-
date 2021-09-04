@@ -9,7 +9,6 @@ class HomeworkController {
 
   static Future<List<Homework>> fetchHomeworks() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    print('homework');
 
     var response =
         await client.get(Uri.parse(BaseUrl().url + 'homework'), headers: {
@@ -23,5 +22,16 @@ class HomeworkController {
       return homeworkFromJson(jsonString);
     } else
       return null;
+  }
+
+  static downloadHomework(id) async {
+    print(id);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await client.get(Uri.parse(BaseUrl().url + 'download-homework/1'), headers: {
+      "Authorization": 'Bearer ' + prefs.getString('token'),
+      "Content-Type": "application/pdf",
+      "Accept": "application/pdf",
+      'Connection': "keep-alive"
+    });
   }
 }
