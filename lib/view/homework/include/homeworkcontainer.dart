@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smartcric/controller/homeworkcontroller.dart';
 import 'package:smartcric/helper/constants.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
-class HomeWorkContainer extends StatelessWidget {
+class HomeWorkContainer extends StatefulWidget {
   // const HomeWorkContainer({ Key? key }) : super(key: key);
   var data;
   HomeWorkContainer({this.data});
 
   @override
+  _HomeWorkContainerState createState() => _HomeWorkContainerState();
+}
+
+class _HomeWorkContainerState extends State<HomeWorkContainer> {
+  @override
   Widget build(BuildContext context) {
+    final phomework = Provider.of<HomeworkController>(context);
+
+    ProgressDialog pr =
+        ProgressDialog(context, type: ProgressDialogType.Normal);
+    pr.style(message: phomework.message);
+
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: InkWell(
@@ -22,16 +35,20 @@ class HomeWorkContainer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  data.name,
+                  widget.data.name,
                   style: ktextstyle,
                 ),
                 InkWell(
-                  child: Icon(Icons.download),
-                  onTap: () {
-                    print('download');
-                    HomeworkController().downloadHomework(data.id,data.name);
-                  },
-                ),
+                    child: Icon(Icons.download),
+                    onTap: () {
+                      pr.show();
+
+                      HomeworkController()
+                          .downloadHomework(widget.data.id, widget.data.name);
+                      pr.hide().then((isHidden) {
+                        print(isHidden);
+                      });
+                    }),
               ],
             ),
           ),

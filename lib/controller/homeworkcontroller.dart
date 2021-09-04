@@ -7,9 +7,11 @@ import 'package:smartcric/model/homework.dart';
 import 'package:smartcric/util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart' as p;
+import 'package:provider/provider.dart';
 
-class HomeworkController {
+class HomeworkController extends ChangeNotifier {
   static var client = http.Client();
+  String message = "Downloading PDF...";
 
   static Future<List<Homework>> fetchHomeworks() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -33,19 +35,18 @@ class HomeworkController {
     var dio = new Dio();
     final dirList = await _getExternalStoragePath();
     final path = dirList[0].path;
-    final file = File('$path/$name' + '.pdf');
+    final file = File('$path/smart' + '.pdf');
     print(file.path);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     dio.options.headers["Authorization"] = "Bearer " + prefs.getString('token');
-    var res = await dio.download(
-        BaseUrl().url + 'download-homework/' + id.toString(), file.path);
-    print(res);
-    // await client.get(Uri.parse(BaseUrl().url + 'download-homework/1'), headers: {
-    //   "Authorization": 'Bearer ' + prefs.getString('token'),
-    //   "Content-Type": "application/pdf",
-    //   "Accept": "application/pdf",
-    //   'Connection': "keep-alive"
-    // });
+    await dio
+        .download(
+            BaseUrl().url + 'download-homework/' + id.toString(), file.path)
+        .then((value) {
+      message = "Download Completed...";
+      print(message);
+      notifyListeners();
+    });
   }
 
   Future<List<Directory>> _getExternalStoragePath() {

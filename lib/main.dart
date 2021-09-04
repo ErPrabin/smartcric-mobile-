@@ -1,4 +1,5 @@
 import 'package:smartcric/controller/authcontroller.dart';
+import 'package:smartcric/controller/homeworkcontroller.dart';
 import 'package:smartcric/view/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => AuthController()),
-          // ChangeNotifierProvider(create: (_) => CartController()),
+          ChangeNotifierProvider(create: (_) => HomeworkController()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
