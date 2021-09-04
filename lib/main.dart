@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 import 'package:smartcric/view/forgetpassword/forgetpassword.dart';
+import 'package:smartcric/view/homework/homeworkdetail.dart';
 import 'package:smartcric/view/homework/index.dart';
 import 'package:smartcric/wrapper.dart';
 

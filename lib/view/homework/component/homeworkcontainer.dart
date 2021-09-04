@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:smartcric/controller/homeworkcontroller.dart';
 import 'package:smartcric/helper/constants.dart';
 import 'package:progress_dialog/progress_dialog.dart';
+import 'package:smartcric/view/homework/homeworkdetail.dart';
 
 class HomeWorkContainer extends StatefulWidget {
   // const HomeWorkContainer({ Key? key }) : super(key: key);
@@ -41,19 +42,20 @@ class _HomeWorkContainerState extends State<HomeWorkContainer> {
                 InkWell(
                     child: Icon(Icons.download),
                     onTap: () {
-                      pr.show();
-
-                      HomeworkController()
-                          .downloadHomework(widget.data.id, widget.data.name);
-                      pr.hide().then((isHidden) {
-                        print(isHidden);
-                      });
+                      print('download');
+                      phomework.downloadHomework(
+                          widget.data.id, widget.data.name);
                     }),
               ],
             ),
           ),
         ),
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HomeWorkDetail(data: widget.data)));
+        },
       ),
     );
   }

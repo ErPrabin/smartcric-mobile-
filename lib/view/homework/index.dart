@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smartcric/controller/homeworkcontroller.dart';
 import 'package:smartcric/helper/constants.dart';
 import 'package:smartcric/model/homework.dart';
-import 'package:smartcric/view/homework/include/homeworkcontainer.dart';
+import 'package:smartcric/view/homework/component/homeworkcontainer.dart';
 
 class HomeWorkPage extends StatefulWidget {
   // const HomeWork({ Key? key }) : super(key: key);
@@ -23,8 +23,7 @@ class _HomeWorkState extends State<HomeWorkPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: kprimarycolor,
         elevation: 0,
@@ -57,6 +56,6 @@ class _HomeWorkState extends State<HomeWorkPage> {
             return Text('Loading...');
         },
       ),
-    ));
+    );
   }
 }
