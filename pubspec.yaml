@@ -37,7 +37,8 @@ dependencies:
   intl: ^0.17.0
   flutter_spinkit: ^5.1.0
   dio: ^3.0.8
-  path_provider: ^1.6.0
+  path_provider:
+  progress_dialog:
 
 dev_dependencies:
   flutter_test:
