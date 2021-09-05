@@ -12,7 +12,7 @@ class HomeWorkPage extends StatefulWidget {
 }
 
 class _HomeWorkState extends State<HomeWorkPage> {
-  Future<List<Homework>> homework;
+  Future<List<Homework>>  homework;
 
   @override
   void initState() {

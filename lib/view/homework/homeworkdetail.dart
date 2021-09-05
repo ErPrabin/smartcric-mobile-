@@ -1,17 +1,42 @@
-import 'dart:html';
+import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:smartcric/controller/homeworkcontroller.dart';
 import 'package:smartcric/helper/constants.dart';
 import 'package:smartcric/util.dart';
 
-class HomeWorkDetail extends StatelessWidget {
+class HomeWorkDetail extends StatefulWidget {
   // const HomeWorkDetail({ Key? key }) : super(key: key);
   var data;
   HomeWorkDetail({this.data});
 
   @override
+  _HomeWorkDetailState createState() => _HomeWorkDetailState();
+}
+
+class _HomeWorkDetailState extends State<HomeWorkDetail> {
+  File selectedfile;
+  String filename;
+  @override
   Widget build(BuildContext context) {
+    void selectHomework() async {
+      FilePickerResult result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['pdf'],
+      );
+
+      if (result != null) {
+        selectedfile = File(result.files.single.path);
+        print(selectedfile.path);
+        setState(() {
+          selectedfile = selectedfile;
+        });
+      } else {
+        print('User canceled the picker');
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kprimarycolor,
@@ -37,39 +62,66 @@ class HomeWorkDetail extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              data.name,
+              widget.data.name,
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
             Text(
-              striptags(data.description),
+              striptags(widget.data.description),
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: ktextlightcolor),
             ),
             Padding(
-              padding: const EdgeInsets.only(top:150.0),
+              padding: const EdgeInsets.only(top: 150.0),
               child: Center(
-                child: RaisedButton(
+                child: Container(
+                    child: RaisedButton.icon(
                   onPressed: () {
                     selectHomework();
                   },
-                  child: Text('Select Homework'),
-                ),
+                  icon: Icon(Icons.folder_open),
+                  label: Text("CHOOSE FILE"),
+                  color: Colors.redAccent,
+                  colorBrightness: Brightness.dark,
+                )),
               ),
-            )
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 20.0),
+            //   child: Center(
+            //     child: Text(selectedfile.path ?? 'Select Homework '),
+            //   ),
+            // ),
+            selectedfile == null
+                ? Container()
+                : Center(
+                  child: Container(
+                      child: RaisedButton.icon(
+                      onPressed: () {
+                        HomeworkController.submitHomework(selectedfile);
+                      },
+                      icon: Icon(Icons.folder_open),
+                      label: Text("UPLOAD FILE"),
+                      color: Colors.redAccent,
+                      colorBrightness: Brightness.dark,
+                    )),
+                )
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 150.0),
+            //   child: Center(
+            //     child: RaisedButton(
+            //       onPressed: () {
+            //         print(selectedfile);
+            //         HomeworkController.submitHomework(selectedfile);
+            //       },
+            //       child: Text('Submit Homework'),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
     );
   }
-}
-void selectHomework() async{
-  FilePickerResult? result = await FilePicker.platform.pickFiles();
-
-if(result != null) {
-   File file = File(result.files.single.path);
-} else {
-   // User canceled the picker
-}
 }
