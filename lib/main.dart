@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:smartcric/view/forgetpassword/forgetpassword.dart';
 import 'package:smartcric/view/homework/homeworkdetail.dart';
 import 'package:smartcric/view/homework/index.dart';
+import 'package:smartcric/view/my-activities/index.dart';
 import 'package:smartcric/wrapper.dart';
 
 void main() {
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
             '/': (context) => Wrapper(),
             '/forgetpassword': (context) => ForgetPassword(),
             '/homework': (context) => HomeWorkPage(),
-            // '/': (context) => HomeWorkPage(),
+            '/my activities': (context) => MyActivities(),
             // '/food_detail': (context) => FoodDetail(),
             // '/cartpage': (context) => CartPage(),
             

@@ -41,20 +41,22 @@ class _HomeWorkState extends State<HomeWorkPage> {
         ),
       ),
       backgroundColor: kprimarycolor,
-      body: FutureBuilder(
-        future: homework,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (context, index) {
-                  return HomeWorkContainer(data: snapshot.data[index]);
-                });
-          } else if (snapshot.hasError) {
-            return Text("${snapshot.error}");
-          } else
-            return Center(child: CircularProgressIndicator());
-        },
+      body: SingleChildScrollView(
+        child: FutureBuilder(
+          future: homework,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (context, index) {
+                    return HomeWorkContainer(data: snapshot.data[index]);
+                  });
+            } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+            } else
+              return Center(child: CircularProgressIndicator());
+          },
+        ),
       ),
     );
   }
