@@ -53,7 +53,7 @@ class _HomeWorkState extends State<HomeWorkPage> {
           } else if (snapshot.hasError) {
             return Text("${snapshot.error}");
           } else
-            return Text('Loading...');
+            return Center(child: CircularProgressIndicator());
         },
       ),
     );

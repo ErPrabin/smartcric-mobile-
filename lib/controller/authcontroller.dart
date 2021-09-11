@@ -38,7 +38,7 @@ class AuthController extends ChangeNotifier {
       print(user[0].user);
       print(user.toString());
       // user.add(userdata);
-      notifyListeners();
+      // notifyListeners();
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('id', userdata.user.id.toString());
