@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartcric/helper/constants.dart';
+import 'package:smartcric/util.dart';
 
 class MyActivityDetail extends StatelessWidget {
   // const MyActivityDetail({ Key? key }) : super(key: key);
@@ -39,9 +40,31 @@ class MyActivityDetail extends StatelessWidget {
                   SizedBox(
                     width: 20,
                   ),
-                  Text(data.name,style: ktextstyle,),
+                  Text(
+                    data.name,
+                    style: ktextstyle,
+                  ),
                 ],
-              )
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: <Widget>[
+                  // Text(
+                  //   "Description: ",
+                  //   style: ktextstyle,
+                  // ),
+                  // SizedBox(
+                  //   width: 20,
+                  // ),
+                  Expanded(
+                      child: Text(
+                    striptags(data.description),
+                    style: kdescriptionystyle,
+                  )),
+                ],
+              ),
             ],
           ),
         ),

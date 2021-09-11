@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smartcric">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="smartcric"
         android:icon="@mipmap/ic_launcher">
