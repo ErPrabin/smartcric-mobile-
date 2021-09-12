@@ -59,7 +59,7 @@ class _MyActivitiesState extends State<MyActivities> {
                         physics: NeverScrollableScrollPhysics(),
                         // controller: controller,
                         childAspectRatio: (itemWidth / (itemHeight * 0.15)),
-                        mainAxisSpacing: 2,
+                        mainAxisSpacing: 10,
                         crossAxisSpacing: 10,
                         crossAxisCount: 2,
                         children: List.generate(snapshot.data.length, (index) {
