@@ -140,7 +140,7 @@ class _LogInState extends State<LogIn> {
                                       // AuthController().login(email,password);
                                       // userp.login('prabin');
                                       EasyLoading.show(
-                                          status: 'Login',
+                                          status: 'Loggin You In...',
                                           maskType: EasyLoadingMaskType.black);
                                       userp
                                           .login(email, password)
