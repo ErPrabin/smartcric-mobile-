@@ -44,6 +44,8 @@ dependencies:
   file_picker: ^4.0.1
   path: ^1.6.4
   video_player: ^2.2.0
+  better_player: ^0.0.44
+  flutter_easyloading: ^3.0.3
 
 
 dev_dependencies:

@@ -61,6 +61,11 @@ class _CreditCardState extends State<CreditCard> {
                 // textEditingController: cardNumber,
                 textTitle: "Card Number",
                 hint: "XXXX-XXXX-XXXX-XXXX",
+                onChanged: (val) {
+                  setState(() {
+                    card_number = val;
+                  });
+                },
                 // inputValidator: FormValidator.validateEmpty,
               ),
               SizedBox(
@@ -169,9 +174,10 @@ class _CreditCardState extends State<CreditCard> {
               Center(
                 child: RaisedButton(
                   color: kprimarycolor,
-                  onPressed: () {},
+                  onPressed: () {
+                    print(card_number);
+                  },
                   child: Text('Pay Fee'),
-                
                 ),
               ),
             ],
