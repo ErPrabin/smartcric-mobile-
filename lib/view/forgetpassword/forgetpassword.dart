@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smartcric/helper/constants.dart';
 
 class ForgetPassword extends StatefulWidget {
   // const ForgetPassword({ Key ? key }) : super(key: key);
@@ -51,7 +52,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                             Text(
                               'Forgot your password?',
                               style: TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.bold),
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  color: klogincolor),
                             ),
                             SizedBox(
                               height: 20,
@@ -75,56 +78,49 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   //     }
                   //   }())),
                   // ),
-                  Container(
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        children: <Widget>[
-                          TextFormField(
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.email),
-                              hintText: 'Email',
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          children: <Widget>[
+                            TextFormField(
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.email),
+                                hintText: 'Email',
+                              ),
+                              validator: (val) =>
+                                  val.isEmpty ? 'Enter Email' : null,
+                              onChanged: (val) {
+                                setState(() => email = val);
+                              },
                             ),
-                            validator: (val) =>
-                                val.isEmpty ? 'Enter Email' : null,
-                            onChanged: (val) {
-                              setState(() => email = val);
-                            },
-                          ),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.lock),
-                              hintText: 'Password',
+                            SizedBox(
+                              height: 20,
                             ),
-                            obscureText: true,
-                            validator: (val) => val.length < 8
-                                ? 'Password must be atleast 8 character long'
-                                : null,
-                            onChanged: (val) {
-                              setState(() => password = val);
-                            },
-                          ),
-                          RaisedButton(
-                              // elevation: 0.0,
-                              child: Container(
-                                width: 350,
-                                height: 40.0,
-                                child: Center(
-                                  child: Text(
-                                    "Login",
-                                    style: TextStyle(color: Colors.white),
+                            RaisedButton(
+                                // elevation: 0.0,
+                                child: Container(
+                                  width: 350,
+                                  height: 40.0,
+                                  child: Center(
+                                    child: Text(
+                                      "Send Reset Link",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              color: Colors.blue,
-                              onPressed: () async {
-                                if (_formKey.currentState.validate()) {
-                                  // AuthController().login(email,password);
-                                  // userp.login('prabin');
-                                  // userp.login(email, password);
-                                }
-                              }),
-                        ],
+                                color: Colors.blue,
+                                onPressed: () async {
+                                  if (_formKey.currentState.validate()) {
+                                    // AuthController().login(email,password);
+                                    // userp.login('prabin');
+                                    // userp.login(email, password);
+                                  }
+                                }),
+                          ],
+                        ),
                       ),
                     ),
                   )
