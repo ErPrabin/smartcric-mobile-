@@ -11,7 +11,7 @@ import 'package:path_provider/path_provider.dart' as p;
 import 'package:provider/provider.dart';
 import 'package:file_picker/file_picker.dart';
 
-class HomeworkController extends ChangeNotifier {
+class HomeworkController{
   static var client = http.Client();
   String message = "Downloading PDF...";
 
@@ -32,7 +32,7 @@ class HomeworkController extends ChangeNotifier {
       return null;
   }
 
-  downloadHomework(id, name) async {
+   Future<String>  downloadHomework(id, name) async {
     print(id);
     var dio = new Dio();
     final dirList = await _getExternalStoragePath();
@@ -46,8 +46,7 @@ class HomeworkController extends ChangeNotifier {
             BaseUrl().url + 'download-homework/' + id.toString(), file.path)
         .then((value) {
       message = "Download Completed...";
-      print(message);
-      notifyListeners();
+      return message;
     });
   }
 

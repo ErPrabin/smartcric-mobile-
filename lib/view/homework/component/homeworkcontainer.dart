@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:smartcric/controller/homeworkcontroller.dart';
 import 'package:smartcric/helper/constants.dart';
@@ -15,14 +16,9 @@ class HomeWorkContainer extends StatefulWidget {
 }
 
 class _HomeWorkContainerState extends State<HomeWorkContainer> {
+  HomeworkController homework = new HomeworkController();
   @override
   Widget build(BuildContext context) {
-    final phomework = Provider.of<HomeworkController>(context);
-
-    ProgressDialog pr =
-        ProgressDialog(context, type: ProgressDialogType.Normal);
-    pr.style(message: phomework.message);
-
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: InkWell(
@@ -42,9 +38,16 @@ class _HomeWorkContainerState extends State<HomeWorkContainer> {
                 InkWell(
                     child: Icon(Icons.download),
                     onTap: () {
+                      EasyLoading.show(
+                          status: "Downloading Homework...",
+                          maskType: EasyLoadingMaskType.black);
                       print('download');
-                      phomework.downloadHomework(
-                          widget.data.id, widget.data.name);
+                      homework
+                          .downloadHomework(widget.data.id, widget.data.name)
+                          .then((value) {
+                        EasyLoading.showSuccess('Download Success!');
+                        EasyLoading.dismiss();
+                      });
                     }),
               ],
             ),
