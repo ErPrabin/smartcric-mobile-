@@ -23,7 +23,7 @@ class AuthController extends ChangeNotifier {
   //   return _name;
   // }
 
-  login(String email, String password) async {
+  Future<String> login(String email, String password) async {
     print(BaseUrl().url);
     // String email=email;
     // String password=password;
@@ -48,6 +48,7 @@ class AuthController extends ChangeNotifier {
       username = prefs.getString('name');
       notifyListeners();
       print(prefs.getString('name'));
+      return username;
       // return productFromJson(jsonString);
     } else {
       // print(response.body);

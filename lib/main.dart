@@ -1,3 +1,4 @@
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:smartcric/controller/authcontroller.dart';
 import 'package:smartcric/controller/homeworkcontroller.dart';
 import 'package:smartcric/view/auth/login.dart';
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
             // '/cartpage': (context) => CartPage(),
             
           },
+          builder: EasyLoading.init(),
           // home: Wrapper(),
 
           // FutureBuilder(
