@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:smartcric/controller/coachingslotcontroller.dart';
 import 'package:smartcric/controller/homeworkcontroller.dart';
 import 'package:smartcric/helper/constants.dart';
+import 'package:smartcric/model/coachingslot.dart';
 import 'package:smartcric/model/homework.dart';
 import 'package:smartcric/view/homework/component/homeworkcontainer.dart';
 
-class HomeWorkPage extends StatefulWidget {
+import 'component/coachingslotcontainer.dart';
+
+class CoachingSlot extends StatefulWidget {
   // const HomeWork({ Key? key }) : super(key: key);
 
   @override
-  _HomeWorkState createState() => _HomeWorkState();
+  _CoachingSlotState createState() => _CoachingSlotState();
 }
 
-class _HomeWorkState extends State<HomeWorkPage> {
-  Future<List<Homework>>  homework;
+class _CoachingSlotState extends State<CoachingSlot> {
+  Future<List<Coachingslot>> coachingslot;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    homework = HomeworkController.fetchHomeworks();
+    coachingslot = CoachingSlotController.fetchCoachingSlot();
   }
 
   @override
@@ -42,13 +46,13 @@ class _HomeWorkState extends State<HomeWorkPage> {
       ),
       backgroundColor: kprimarycolor,
       body: FutureBuilder(
-        future: homework,
+        future: coachingslot,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, index) {
-                  return HomeWorkContainer(data: snapshot.data[index]);
+                  return CoachingSlotContainer(data: snapshot.data[index]);
                 });
           } else if (snapshot.hasError) {
             return Text("${snapshot.error}");

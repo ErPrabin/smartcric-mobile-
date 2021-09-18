@@ -5,6 +5,7 @@ import 'package:smartcric/view/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
+import 'package:smartcric/view/coaching-slot/index.dart';
 import 'package:smartcric/view/fee/creditCard.dart';
 import 'package:smartcric/view/forgetpassword/forgetpassword.dart';
 import 'package:smartcric/view/homework/homeworkdetail.dart';
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
             '/homework': (context) => HomeWorkPage(),
             '/my activities': (context) => MyActivities(),
             '/pay fee': (context) => CreditCard(),
-            // '/cartpage': (context) => CartPage(),
+            '/coaching slots': (context) => CoachingSlot(),
             
           },
           builder: EasyLoading.init(),

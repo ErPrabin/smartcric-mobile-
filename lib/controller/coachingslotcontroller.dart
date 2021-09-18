@@ -9,7 +9,7 @@ import 'package:smartcric/util.dart';
 class CoachingSlotController {
   static var client = http.Client();
 
-  static Future<List<Coachingslot>> fetchMyActivity() async {
+  static Future<List<Coachingslot>> fetchCoachingSlot() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var response =
