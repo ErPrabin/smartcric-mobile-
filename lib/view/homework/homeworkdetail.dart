@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:smartcric/controller/homeworkcontroller.dart';
 import 'package:smartcric/helper/constants.dart';
 import 'package:smartcric/util.dart';
@@ -96,17 +97,30 @@ class _HomeWorkDetailState extends State<HomeWorkDetail> {
             selectedfile == null
                 ? Container()
                 : Center(
-                  child: Container(
-                      child: RaisedButton.icon(
+                    child: Container(
+                        child: RaisedButton.icon(
                       onPressed: () {
-                        HomeworkController.submitHomework(selectedfile);
+                        EasyLoading.show(
+                            status: "Submitting Homework...",
+                            maskType: EasyLoadingMaskType.black);
+                        HomeworkController.submitHomework(
+                                widget.data.id, selectedfile)
+                            .then((val) {
+                          if (val == 1) {
+                            EasyLoading.showSuccess(
+                                'Homework Submit Successfully');
+                          } else {
+                            EasyLoading.showError('Couldnot Submit Homework');
+                          }
+                          EasyLoading.dismiss();
+                        });
                       },
                       icon: Icon(Icons.folder_open),
                       label: Text("UPLOAD FILE"),
                       color: Colors.redAccent,
                       colorBrightness: Brightness.dark,
                     )),
-                )
+                  )
             // Padding(
             //   padding: const EdgeInsets.only(top: 150.0),
             //   child: Center(

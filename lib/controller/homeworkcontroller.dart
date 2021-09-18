@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -5,13 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 import 'package:smartcric/model/homework.dart';
+import 'package:smartcric/model/message.dart';
 import 'package:smartcric/util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart' as p;
 import 'package:provider/provider.dart';
 import 'package:file_picker/file_picker.dart';
 
-class HomeworkController{
+class HomeworkController {
   static var client = http.Client();
   String message = "Downloading PDF...";
 
@@ -32,7 +34,7 @@ class HomeworkController{
       return null;
   }
 
-   Future<String>  downloadHomework(id, name) async {
+  Future<String> downloadHomework(id, name) async {
     print(id);
     var dio = new Dio();
     final dirList = await _getExternalStoragePath();
@@ -50,7 +52,7 @@ class HomeworkController{
     });
   }
 
-  static submitHomework(File selectedfile) async {
+  static submitHomework(int id, File selectedfile) async {
     var dio = new Dio();
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -61,7 +63,7 @@ class HomeworkController{
           filename: basename(selectedfile.path)
           //show only filename from path
           ),
-      "homework_id": 1,
+      "homework_id": id.toString(),
       "user_id": prefs.getString('id')
     });
     dio.options.headers["Authorization"] = "Bearer " + prefs.getString('token');
@@ -76,11 +78,20 @@ class HomeworkController{
     //   },
     // );
     if (response.statusCode == 200) {
+      // Map<String, dynamic> map = json.decode(response.data);
+      // String data = map["message"];
+      // print(data);
       var jsonString = response.data;
-      // return homeworkFromJson(jsonString);
-      print(jsonString);
-    } else
-      return null;
+      // var data= messageFromJson(jsonString);
+      // print(data.message);
+      int status = 1;
+
+      return status;
+    } else {
+      int status = 0;
+
+      return status;
+    }
   }
 
   Future<List<Directory>> _getExternalStoragePath() {
