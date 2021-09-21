@@ -163,9 +163,9 @@ class _CreditCardState extends State<CreditCard> {
                                             }).toList(),
                                             onChanged: (_) {
                                               // Message.success(_);
-                                              // setState(() {
-                                              expyear.text = _;
-                                              // });
+                                              setState(() {
+                                                expyear.text = _;
+                                              });
                                             },
                                           ),
                                         ],
@@ -203,7 +203,9 @@ class _CreditCardState extends State<CreditCard> {
                                             }).toList(),
                                             onChanged: (_) {
                                               // Message.success(_);
-                                              expmonth.text = _;
+                                              setState(() {
+                                                expmonth.text = _;
+                                              });
                                             },
                                           ),
                                         ],
