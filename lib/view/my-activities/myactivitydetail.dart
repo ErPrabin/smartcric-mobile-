@@ -92,12 +92,25 @@ class _MyActivityDetailState extends State<MyActivityDetail> {
                   )),
                 ],
               ),
-              BetterPlayer.network(
-                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-                betterPlayerConfiguration: BetterPlayerConfiguration(
-                  aspectRatio: 16 / 9,
-                ),
-              ),
+              // BetterPlayer.network(
+              //   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+              //   betterPlayerConfiguration: BetterPlayerConfiguration(
+              //     aspectRatio: 16 / 9,
+              //   ),
+              // ),
+              Container(
+                        height: 400,
+                        // width: 140,
+                        decoration: BoxDecoration(
+                          // color: Colors.red,
+                          image: DecorationImage(
+                            image: NetworkImage('http://192.168.100.146:8080/images/upload-file/20210916115401829241.png'),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+              
+              Image.network('http://192.168.100.146:8080/images/upload-file/20210916115401829241.png'),
               // Center(
               //   child: _controller.value.isInitialized
               //       ? AspectRatio(
