@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:smartcric/controller/authcontroller.dart';
 import 'package:smartcric/helper/constants.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,6 +9,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userp = Provider.of<AuthController>(context);
+
     var size = MediaQuery.of(context).size;
     final double itemHeight = (size.height - kToolbarHeight - 24) / 2;
     final double itemWidth = size.width / 2;
@@ -31,6 +35,14 @@ class HomePage extends StatelessWidget {
           ),
           onPressed: () {},
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              userp.logout();
+            },
+          )
+        ],
       ),
       backgroundColor: kprimarycolor,
       body: SingleChildScrollView(
