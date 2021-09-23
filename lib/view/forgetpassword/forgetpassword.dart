@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:smartcric/controller/authcontroller.dart';
 import 'package:smartcric/helper/constants.dart';
 
 class ForgetPassword extends StatefulWidget {
@@ -114,9 +116,19 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                 color: Colors.blue,
                                 onPressed: () async {
                                   if (_formKey.currentState.validate()) {
-                                    // AuthController().login(email,password);
-                                    // userp.login('prabin');
-                                    // userp.login(email, password);
+                                    EasyLoading.show(
+                                        // status: "Fee Payment",
+                                        maskType: EasyLoadingMaskType.black);
+                                    AuthController.forgetPassword(email)
+                                        .then((data) {
+                                      if (data['status'] == 1) {
+                                        EasyLoading.showSuccess(
+                                            data['message']);
+                                      } else {
+                                        EasyLoading.showError(data['message']);
+                                      }
+                                      EasyLoading.dismiss();
+                                    });
                                   }
                                 }),
                           ],

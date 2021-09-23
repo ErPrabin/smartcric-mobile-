@@ -93,74 +93,80 @@ class _LogInState extends State<LogIn> {
                           ),
                         ),
                       ),
-                      Container(
-                        child: Form(
-                          key: _formKey,
-                          child: Column(
-                            children: <Widget>[
-                              TextFormField(
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.email),
-                                  hintText: 'Email',
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(
+                          child: Form(
+                            key: _formKey,
+                            child: Column(
+                              children: <Widget>[
+                                TextFormField(
+                                  decoration: InputDecoration(
+                                    prefixIcon: Icon(Icons.email),
+                                    hintText: 'Email',
+                                  ),
+                                  validator: (val) =>
+                                      val.isEmpty ? 'Enter Email' : null,
+                                  onChanged: (val) {
+                                    setState(() => email = val);
+                                  },
                                 ),
-                                validator: (val) =>
-                                    val.isEmpty ? 'Enter Email' : null,
-                                onChanged: (val) {
-                                  setState(() => email = val);
-                                },
-                              ),
-                              TextFormField(
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.lock),
-                                  hintText: 'Password',
+                                SizedBox(height: 20,),
+                                TextFormField(
+                                  decoration: InputDecoration(
+                                    prefixIcon: Icon(Icons.lock),
+                                    hintText: 'Password',
+                                  ),
+                                  obscureText: true,
+                                  validator: (val) => val.length < 8
+                                      ? 'Password must be atleast 8 character long'
+                                      : null,
+                                  onChanged: (val) {
+                                    setState(() => password = val);
+                                  },
                                 ),
-                                obscureText: true,
-                                validator: (val) => val.length < 8
-                                    ? 'Password must be atleast 8 character long'
-                                    : null,
-                                onChanged: (val) {
-                                  setState(() => password = val);
-                                },
-                              ),
-                              RaisedButton(
-                                  // elevation: 0.0,
-                                  child: Container(
-                                    width: 350,
-                                    height: 40.0,
-                                    child: Center(
-                                      child: Text(
-                                        "Login",
-                                        style: TextStyle(color: Colors.white),
+                                SizedBox(height: 20,),
+
+                                RaisedButton(
+                                    // elevation: 0.0,
+                                    child: Container(
+                                      width: 350,
+                                      height: 40.0,
+                                      child: Center(
+                                        child: Text(
+                                          "Login",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  color: Colors.blue,
-                                  onPressed: () async {
-                                    if (_formKey.currentState.validate()) {
-                                      // AuthController().login(email,password);
-                                      // userp.login('prabin');
-                                      EasyLoading.show(
-                                          status: 'Loggin You In...',
-                                          maskType: EasyLoadingMaskType.black);
-                                      userp
-                                          .login(email, password)
-                                          .then((value) {
-                                        EasyLoading.dismiss();
-                                      });
-                                    }
-                                  }),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              InkWell(
-                                child: Text('Forget Password?'),
-                                onTap: () {
-                                  print('forget password');
-                                  Navigator.of(context)
-                                      .pushNamed('/forgetpassword');
-                                },
-                              )
-                            ],
+                                    color: Colors.blue,
+                                    onPressed: () async {
+                                      if (_formKey.currentState.validate()) {
+                                        // AuthController().login(email,password);
+                                        // userp.login('prabin');
+                                        EasyLoading.show(
+                                            status: 'Loggin You In...',
+                                            maskType: EasyLoadingMaskType.black);
+                                        userp
+                                            .login(email, password)
+                                            .then((value) {
+                                          EasyLoading.dismiss();
+                                        });
+                                      }
+                                    }),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                InkWell(
+                                  child: Text('Forget Password?'),
+                                  onTap: () {
+                                    print('forget password');
+                                    Navigator.of(context)
+                                        .pushNamed('/forgetpassword');
+                                  },
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       )

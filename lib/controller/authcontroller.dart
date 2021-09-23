@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:smartcric/model/user.dart';
@@ -61,6 +63,17 @@ class AuthController extends ChangeNotifier {
       print(loginerror.error);
       // return null;
     }
+  }
+
+  static Future<dynamic> forgetPassword(String email) async {
+    var response = await client.post(Uri.parse(BaseUrl().url + 'forget'),
+        body: {'email': email}, headers: {'key': 'application/json'});
+    var data = json.decode(response.body);
+    if (response.statusCode == 200) {
+      print(response.body);
+      return data;
+    } else
+      return data;
   }
 
   logout() {
