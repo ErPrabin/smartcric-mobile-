@@ -8,11 +8,11 @@ import 'package:smartcric/util.dart';
 class MyActivityController {
   static var client = http.Client();
 
-  static Future<List<MyActivity>> fetchMyActivity() async {
+  static Future<List<MyActivity>> fetchMyActivity(String category) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var response =
-        await client.get(Uri.parse(BaseUrl().url + 'videos'), headers: {
+        await client.get(Uri.parse(BaseUrl().url + 'videos/$category'), headers: {
       "Authorization": 'Bearer ' + prefs.getString('token'),
       "Content-Type": "application/json",
       "Accept": "application/json",

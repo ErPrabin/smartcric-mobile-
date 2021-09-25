@@ -9,6 +9,8 @@ import 'package:smartcric/view/my-activities/myactivitydetail.dart';
 
 class MyActivities extends StatefulWidget {
   // const ({ Key? key }) : super(key: key);
+  String category;
+  MyActivities({this.category});
 
   @override
   _MyActivitiesState createState() => _MyActivitiesState();
@@ -21,7 +23,7 @@ class _MyActivitiesState extends State<MyActivities> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    myactivities = MyActivityController.fetchMyActivity();
+    myactivities = MyActivityController.fetchMyActivity(widget.category);
   }
 
   @override
