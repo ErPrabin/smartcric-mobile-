@@ -87,7 +87,7 @@ class _MyActivityDetailState extends State<MyActivityDetail> {
                   // ),
                   Expanded(
                       child: Text(
-                    striptags(widget.data.description),
+                    striptags(widget.data.image),
                     style: kdescriptionystyle,
                   )),
                 ],
@@ -109,8 +109,9 @@ class _MyActivityDetailState extends State<MyActivityDetail> {
               //             ),
               //           ),
               //         ),
-              
-              // Image.network('http://192.168.100.146:8080/images/upload-file/20210916115401829241.png'),
+
+              // Image.network(
+              //     ImageUrl().url + 'upload-file/' + widget.data.image),
               // Center(
               //   child: _controller.value.isInitialized
               //       ? AspectRatio(

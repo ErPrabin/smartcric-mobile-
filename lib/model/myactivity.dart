@@ -13,6 +13,7 @@ class MyActivity {
         this.id,
         this.name,
         this.description,
+        this.image,
         this.video,
         this.sort,
         this.createdAt,
@@ -22,6 +23,7 @@ class MyActivity {
     int id;
     String name;
     String description;
+    String image;
     String video;
     int sort;
     DateTime createdAt;
@@ -31,6 +33,7 @@ class MyActivity {
         id: json["id"],
         name: json["name"],
         description: json["description"],
+        image: json["image"],
         video: json["video"],
         sort: json["sort"],
         createdAt: DateTime.parse(json["created_at"]),
@@ -41,6 +44,7 @@ class MyActivity {
         "id": id,
         "name": name,
         "description": description,
+        "image": image,
         "video": video,
         "sort": sort,
         "created_at": createdAt.toIso8601String(),
